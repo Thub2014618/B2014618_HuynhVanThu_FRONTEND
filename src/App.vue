@@ -19,7 +19,7 @@ import AppHeader from "@/components/AppHeader.vue";
 
 <style>
   .page {
-    max-width: 400px;
+    max-width: 1000px;
     margin: auto;
   }
 </style>

@@ -7,6 +7,7 @@
             <h4>
                 Danh bạ
                 <i class="fas fa-address-book"></i>
+
             </h4>
             <ContactList v-if="filteredContactsCount > 0"
             :contacts="filteredContacts"
@@ -23,6 +24,7 @@
                 <button class="btn btn-sm btn-danger" @click="removeAllContacts">
                     <i class="fas fa-trash"></i> Xóa tất cả
                 </button>
+                <p>{{ message }}</p>
             </div>
         </div>
         <div class="mt-3 col-md-6">
@@ -32,6 +34,13 @@
                     <i class="fas fa-address-card"></i>
                 </h4>
                 <ContactCard :contact="activeContact" />
+                <router-link :to="{
+                        name: 'contact.edit',
+                        params: { id: activeContact._id },
+                    }">
+                    <span class="mt-2 badge badge-warning">
+                    <i class="fas fa-edit"></i> Hiệu chỉnh</span>
+                </router-link>
             </div>
         </div>
     </div>
