@@ -6,8 +6,6 @@
             @submit:contact="updateContact"
             @delete:contact="deleteContact"
         />
-        <p>{{ message }}</p> 
-        <!-- xóa -->
     </div>
 </template>
 
@@ -32,8 +30,6 @@
                 try {
                     this.contact = await ContactService.get(id);
                 } catch (error) {
-                    console.log(error);
-                    // Chuyển sang trang NotFound đồng thời giữ cho URL không đổi
                     this.$router.push({
                         name: "notfound",
                         params: {
@@ -47,8 +43,11 @@
             async updateContact(data) {
                 try {
                     await ContactService.update(this.contact._id, data);
-                    this.message = "Liên hệ được cập nhật thành công.";
-                    this.$router.push({ name: "contactbook", query: { message: this.message } });                
+                    this.message = "Liên hệ có tên \""+this.contact.name +"\" được cập nhật thành công.";
+                    this.$router.push({
+                        name: "contactbook", 
+                        query: { message: this.message }
+                    });                
                 } catch (error) {
                     console.log(error);
                 }
@@ -57,7 +56,10 @@
                 if (confirm("Bạn muốn xóa Liên hệ này?")) {
                     try {
                         await ContactService.delete(this.contact._id);
-                        this.$router.push({ name: "contactbook" });
+                        this.$router.push({ 
+                            name: "contactbook" , 
+                            query: {message : "Liên hệ có tên\"" + this.contact.name + "\" đã được xóa thành công."}  
+                        });
                     } catch (error) {
                         console.log(error);
                     }

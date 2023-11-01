@@ -14,6 +14,7 @@
             v-model:activeIndex="activeIndex"
             />
             <p v-else>Không có liên hệ nào.</p>
+            <p v-if="$route.query.message"  class="alert alert-success mt-2" >{{ $route.query.message }}</p>
             <div class="mt-3 row justify-content-around align-items-center">
                 <button class="btn btn-sm btn-primary" @click="refreshList()">
                     <i class="fas fa-redo"></i> Làm mới
@@ -24,7 +25,6 @@
                 <button class="btn btn-sm btn-danger" @click="removeAllContacts">
                     <i class="fas fa-trash"></i> Xóa tất cả
                 </button>
-                <p>{{ message }}</p>
             </div>
         </div>
         <div class="mt-3 col-md-6">

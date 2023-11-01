@@ -5,8 +5,6 @@
             :contact="contact"
             @submit:contact="addContact"
         />
-        <p>{{ message }}</p> 
-        <!-- xóa -->
     </div>
 </template>
 
@@ -27,7 +25,7 @@
             async addContact(data) {
                 try {
                     await ContactService.create(data);
-                    this.message = "Liên hệ được thêm thành công.";
+                    this.message = "Liên hệ có tên \""+this.contact.name +"\" được cập nhật thành công.";
                     this.$router.push({ name: "contactbook", query: { message: this.message } });                
                 } catch (error) {
                     console.log(error);
